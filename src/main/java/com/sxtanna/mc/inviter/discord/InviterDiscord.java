@@ -6,10 +6,12 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.GuildChannel;
 import net.dv8tion.jda.api.requests.GatewayIntent;
+import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
 import javax.security.auth.login.LoginException;
+import java.util.EnumSet;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.logging.Level;
 
@@ -54,7 +56,9 @@ public final class InviterDiscord
 		final JDA discord;
 		try
 		{
-			discord = JDABuilder.create(plugin.getOptions().getDiscordToken(), GatewayIntent.GUILD_INVITES).build();
+			discord = JDABuilder.createDefault(plugin.getOptions().getDiscordToken(), GatewayIntent.GUILD_INVITES)
+								.disableCache(EnumSet.allOf(CacheFlag.class))
+								.build();
 		}
 		catch (final LoginException ex)
 		{
