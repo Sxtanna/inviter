@@ -5,9 +5,20 @@ message:
   invite_fail_exception: ""
 
 command:
+  # How long should they wait between uses (seconds)
   cooldown: 600
+  # Permission required for them to use the command
   requires: "inviter.command"
 
-invites:
-  usages: 1
-  expire: 300
+discord:
+  # The bot application token (**required**)
+  token: ""
+  # Which guild this bot is targeting (**required**)
+  guild: -1
+  # Which channel to create the invite for (-1 for default)
+  channel: -1
+  invites:
+    # How many times an invite be used
+    usages: 1
+    # How long until an invite expires (seconds)
+    expire: 300
