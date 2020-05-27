@@ -1,6 +1,7 @@
 package com.sxtanna.mc.inviter.command;
 
 import com.sxtanna.mc.inviter.InviterPlugin;
+import com.sxtanna.mc.inviter.options.InviterMessage;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -9,6 +10,10 @@ import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
+import org.threeten.extra.AmountFormats;
+
+import java.time.Duration;
+import java.util.Locale;
 
 public final class InviterCommand implements CommandExecutor
 {
@@ -48,7 +53,11 @@ public final class InviterCommand implements CommandExecutor
 	{
 		if (!sender.hasPermission(plugin.getOptions().getCommandRequires()))
 		{
-			// send requires message
+			plugin.reply(sender, InviterMessage.INVITE_FAIL_NEED_PERM,
+
+						 "permission",
+						 plugin.getOptions().getCommandRequires());
+
 			return true;
 		}
 
@@ -75,7 +84,10 @@ public final class InviterCommand implements CommandExecutor
 
 		if (next != null && curr < next)
 		{
-			// send cooldown message
+			plugin.reply(player, InviterMessage.INVITE_FAIL_MUST_WAIT,
+
+						 "time",
+						 AmountFormats.wordBased(Duration.ofMillis(next - curr), Locale.forLanguageTag(player.getLocale())));
 			return true;
 		}
 
