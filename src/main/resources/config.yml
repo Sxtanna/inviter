@@ -1,8 +1,8 @@
 message:
-  invite_pass: ""
-  invite_fail_must_wait: ""
-  invite_fail_need_perm: ""
-  invite_fail_exception: ""
+  invite_pass: "&9Discord invite link&8: &7%invite%"
+  invite_fail_must_wait: "&cYou must wait &e%time%&c before doing that again!"
+  invite_fail_need_perm: "&cYou do not have permission to do this!"
+  invite_fail_exception: "&cDiscord invite could not be generated: &7%reason%"
 
 command:
   # How long should they wait between uses (seconds)

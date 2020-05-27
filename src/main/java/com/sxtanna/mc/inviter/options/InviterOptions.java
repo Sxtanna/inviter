@@ -21,6 +21,11 @@ public final class InviterOptions
 	}
 
 
+	public String getMessage(final InviterMessage message)
+	{
+		return config != null ? config.getString("message." + message.name().toLowerCase(), message.getDefaultValue()) : message.getDefaultValue();
+	}
+
 	public int getCommandCooldown()
 	{
 		return config != null ? config.getInt("command.cooldown", DEF_COMMAND_COOLDOWN) : DEF_COMMAND_COOLDOWN;
