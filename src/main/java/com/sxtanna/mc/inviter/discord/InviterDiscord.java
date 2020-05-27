@@ -5,6 +5,7 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.GuildChannel;
+import net.dv8tion.jda.api.entities.Invite;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import org.bukkit.Bukkit;
@@ -112,11 +113,19 @@ public final class InviterDiscord
 		channel.createInvite()
 			   .setMaxUses(plugin.getOptions().getDiscordInvitesUsages())
 			   .setMaxAge(plugin.getOptions().getDiscordInvitesExpire())
-			   .queue(invite -> {
+			   .queue(pass -> handleInviteGenPass(sender, pass),
+					  fail -> handleInviteGenFail(sender, fail));
+	}
 
-				   // send invite link
 
-			   });
+	private void handleInviteGenPass(final CommandSender sender, final Invite invite)
+	{
+
+	}
+
+	private void handleInviteGenFail(final CommandSender sender, final Throwable reason)
+	{
+
 	}
 
 }
