@@ -39,9 +39,6 @@ public final class InviterPlugin extends JavaPlugin
 		super.reloadConfig();
 
 		getOptions().setConfig(getConfig());
-
-		getDiscord().kill();
-		getDiscord().load();
 	}
 
 
@@ -58,6 +55,15 @@ public final class InviterPlugin extends JavaPlugin
 	public InviterDiscord getDiscord()
 	{
 		return discord;
+	}
+
+
+	public void reload()
+	{
+		reloadConfig();
+
+		getDiscord().kill();
+		getDiscord().load();
 	}
 
 }
