@@ -28,17 +28,23 @@ public final class InviterDiscord
 
 	public void load()
 	{
+		if (this.discord.get() != null)
+		{
+			return;
+		}
+
 		Bukkit.getScheduler().runTaskAsynchronously(plugin, this::initializeDiscord);
 	}
 
 	public void kill()
 	{
 		final JDA discord = this.discord.getAndSet(null);
-		if (discord != null)
+		if (discord == null)
 		{
-			discord.shutdownNow();
+			return;
 		}
 
+		discord.shutdownNow();
 		plugin.getCommand().kill();
 	}
 
