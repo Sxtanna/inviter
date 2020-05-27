@@ -1,0 +1,13 @@
+message:
+  invite_pass: ""
+  invite_fail_must_wait: ""
+  invite_fail_need_perm: ""
+  invite_fail_exception: ""
+
+command:
+  cooldown: 600
+  requires: "inviter.command"
+
+invites:
+  usages: 1
+  expire: 300

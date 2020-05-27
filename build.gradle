@@ -1,0 +1,33 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+plugins {
+	id "com.github.johnrengelman.shadow" version "5.2.0"
+}
+
+
+group "com.sxtanna.mc"
+version "1.0-SNAPSHOT"
+
+
+apply from: "https://voxmc.net/spigot.gradle"
+
+repositories {
+	jcenter()
+}
+
+dependencies {
+	implementation("net.dv8tion:JDA:4.1.1_155") {
+		exclude module: 'opus-java'
+	}
+}
+
+
+shadowJar {
+	classifier = ""
+}
+
+processResources {
+	from(sourceSets.main.resources.srcDirs) {
+		filter ReplaceTokens, tokens: [version: project.version]
+	}
+}

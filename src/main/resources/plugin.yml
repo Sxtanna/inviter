@@ -1,0 +1,10 @@
+name: "Inviter"
+main: "com.sxtanna.mc.inviter.InviterPlugin"
+
+version: "@version@"
+authors: ["Sxtanna"]
+
+api-version: "1.13"
+
+commands:
+  discord:
