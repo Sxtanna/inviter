@@ -38,6 +38,8 @@ public final class InviterDiscord
 		{
 			discord.shutdownNow();
 		}
+
+		plugin.getCommand().kill();
 	}
 
 
@@ -67,6 +69,8 @@ public final class InviterDiscord
 		this.discord.set(discord);
 
 		plugin.getLogger().info("successfully loaded discord bot");
+
+		plugin.getCommand().load();
 	}
 
 

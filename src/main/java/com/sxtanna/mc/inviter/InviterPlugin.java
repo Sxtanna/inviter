@@ -1,5 +1,6 @@
 package com.sxtanna.mc.inviter;
 
+import com.sxtanna.mc.inviter.command.InviterCommand;
 import com.sxtanna.mc.inviter.discord.InviterDiscord;
 import com.sxtanna.mc.inviter.options.InviterOptions;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -8,6 +9,7 @@ public final class InviterPlugin extends JavaPlugin
 {
 
 	private final InviterOptions options = new InviterOptions();
+	private final InviterCommand command = new InviterCommand(this);
 	private final InviterDiscord discord = new InviterDiscord(this);
 
 
@@ -42,6 +44,11 @@ public final class InviterPlugin extends JavaPlugin
 		getDiscord().load();
 	}
 
+
+	public InviterCommand getCommand()
+	{
+		return command;
+	}
 
 	public InviterOptions getOptions()
 	{
