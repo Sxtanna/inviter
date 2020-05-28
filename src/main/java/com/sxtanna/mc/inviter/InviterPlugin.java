@@ -98,7 +98,7 @@ public final class InviterPlugin extends JavaPlugin
 					throw new IllegalArgumentException("Placeholder values has an object out of position: " + k.getClass() + "[" + i + "]{" + k + "}");
 				}
 
-				text = text.replace("{" + k + "}", v.toString());
+				text = text.replace("%" + k + "%", v.toString());
 			}
 		}
 
