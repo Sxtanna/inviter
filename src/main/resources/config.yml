@@ -7,8 +7,6 @@ message:
 command:
   # How long should they wait between uses (seconds)
   cooldown: 600
-  # Permission required for them to use the command
-  requires: "inviter.command"
 
 discord:
   # The bot application token (**required**)

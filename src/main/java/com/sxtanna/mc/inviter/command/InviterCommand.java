@@ -19,6 +19,10 @@ import java.util.concurrent.TimeUnit;
 public final class InviterCommand implements CommandExecutor
 {
 
+	private static final String PERM_INVITE = "inviter.invite";
+	private static final String PERM_ADMINS = "inviter.admins";
+
+
 	private final InviterPlugin plugin;
 	private final NamespacedKey namespace;
 
@@ -52,12 +56,31 @@ public final class InviterCommand implements CommandExecutor
 	@Override
 	public boolean onCommand(@NotNull final CommandSender sender, @NotNull final Command command, @NotNull final String alias, @NotNull final String[] args)
 	{
-		if (!sender.hasPermission(plugin.getOptions().getCommandRequires()))
+		if (args.length > 0)
+		{
+			if (!args[0].equalsIgnoreCase("reload"))
+			{
+				if (!sender.hasPermission(PERM_ADMINS))
+				{
+					plugin.reply(sender, "&cYou do not have permission to do this!");
+				}
+				else
+				{
+					plugin.reply(sender, "&cInvalid usage: &7/discord {reload}");
+				}
+				return true;
+			}
+
+			plugin.reload();
+			return true;
+		}
+
+		if (!sender.hasPermission(PERM_INVITE))
 		{
 			plugin.reply(sender, InviterMessage.INVITE_FAIL_NEED_PERM,
 
 						 "permission",
-						 plugin.getOptions().getCommandRequires());
+						 PERM_INVITE);
 
 			return true;
 		}

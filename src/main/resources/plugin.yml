@@ -8,3 +8,17 @@ api-version: "1.13"
 
 commands:
   discord:
+    permission: "inviter.invite"
+
+permissions:
+  inviter.*:
+    description: "access to all inviter commands"
+    children:
+      inviter.invite: true
+      inviter.admins: true
+  inviter.invite:
+    description: "access to generating invites"
+    default: false
+  inviter.admins:
+    description: "access to reload the inviter"
+    default: false
