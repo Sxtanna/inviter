@@ -1,6 +1,7 @@
 package com.sxtanna.mc.inviter.discord;
 
 import com.sxtanna.mc.inviter.InviterPlugin;
+import com.sxtanna.mc.inviter.options.InviterMessage;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Guild;
@@ -120,12 +121,20 @@ public final class InviterDiscord
 
 	private void handleInviteGenPass(final CommandSender sender, final Invite invite)
 	{
+		plugin.reply(sender, InviterMessage.INVITE_PASS,
 
+					 "invite",
+					 invite.getUrl());
 	}
 
 	private void handleInviteGenFail(final CommandSender sender, final Throwable reason)
 	{
+		plugin.reply(sender, InviterMessage.INVITE_FAIL_EXCEPTION,
 
+					 "reason",
+					 reason.getMessage());
+
+		plugin.getLogger().log(Level.SEVERE, "failed to generate invite for " + sender.getName(), reason);
 	}
 
 }
