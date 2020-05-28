@@ -111,7 +111,7 @@ public final class InviterCommand implements CommandExecutor
 			plugin.reply(player, InviterMessage.INVITE_FAIL_MUST_WAIT,
 
 						 "time",
-						 AmountFormats.wordBased(Duration.ofMillis(next - curr).withNanos(0), Locale.forLanguageTag(player.getLocale())));
+						 AmountFormats.wordBased(Duration.ofMillis(next - curr).withNanos(0), Locale.forLanguageTag(player.getLocale().replace('_', '-'))));
 			return true;
 		}
 
