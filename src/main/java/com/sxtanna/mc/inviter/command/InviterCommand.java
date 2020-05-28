@@ -14,6 +14,7 @@ import org.threeten.extra.AmountFormats;
 
 import java.time.Duration;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public final class InviterCommand implements CommandExecutor
 {
@@ -91,7 +92,9 @@ public final class InviterCommand implements CommandExecutor
 			return true;
 		}
 
-		player.getPersistentDataContainer().set(namespace, PersistentDataType.LONG, curr + plugin.getOptions().getCommandCooldown());
+		player.getPersistentDataContainer().set(namespace, PersistentDataType.LONG,
+
+												curr + TimeUnit.MILLISECONDS.convert(plugin.getOptions().getCommandCooldown(), TimeUnit.SECONDS));
 		return false;
 	}
 
