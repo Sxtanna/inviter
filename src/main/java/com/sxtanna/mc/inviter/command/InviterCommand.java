@@ -7,16 +7,19 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import org.threeten.extra.AmountFormats;
 
 import java.time.Duration;
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-public final class InviterCommand implements CommandExecutor
+public final class InviterCommand implements CommandExecutor, TabCompleter
 {
 
 	private static final String PERM_INVITE = "inviter.invite";
@@ -40,6 +43,7 @@ public final class InviterCommand implements CommandExecutor
 		if (command != null)
 		{
 			command.setExecutor(this);
+			command.setTabCompleter(this);
 		}
 	}
 
@@ -49,6 +53,7 @@ public final class InviterCommand implements CommandExecutor
 		if (command != null)
 		{
 			command.setExecutor(null);
+			command.setTabCompleter(null);
 		}
 	}
 
@@ -98,6 +103,17 @@ public final class InviterCommand implements CommandExecutor
 		plugin.getDiscord().generateInvite(sender);
 
 		return true;
+	}
+
+	@Override
+	public List<String> onTabComplete(@NotNull final CommandSender sender, @NotNull final Command command, @NotNull final String alias, @NotNull final String[] args)
+	{
+		if (!sender.hasPermission(PERM_ADMINS) || args.length > 1)
+		{
+			return Collections.emptyList();
+		}
+
+		return Collections.singletonList("reload");
 	}
 
 
