@@ -26,6 +26,8 @@ dependencies {
 shadowJar {
 	minimize()
 	classifier = ""
+	
+	relocate 'net.dv8tion.jda', 'com.sxtanna.mc.jda'
 }
 
 processResources {
